@@ -1,0 +1,14 @@
+<Start Issue>1/10/2019 9:10:24 AM	The remote server returned an error: (400) Bad Request.
+ <End Issue>
+<Start Issue>1/10/2019 9:15:25 AM	The remote server returned an error: (400) Bad Request.
+ <End Issue>
+<Start Issue>1/10/2019 9:20:08 AM	The operation has timed out
+ <End Issue>
+<Start Issue>1/10/2019 9:20:09 AM	The remote server returned an error: (400) Bad Request.
+ <End Issue>
+<Start Issue>1/10/2019 9:20:46 AM	The remote server returned an error: (400) Bad Request.
+ <End Issue>
+<Start Issue>1/10/2019 9:26:18 AM	The remote server returned an error: (400) Bad Request.
+ <End Issue>
+<Start Issue>1/10/2019 9:51:06 AM	The underlying connection was closed: An unexpected error occurred on a receive.
+ <End Issue>

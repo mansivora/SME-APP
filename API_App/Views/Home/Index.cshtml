@@ -1,0 +1,393 @@
+﻿@model API_App.Models.APIModel
+@{
+   
+}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12 contact-us-form">
+            @*<div id="d" class="col-md-12 bgoh">COMPANY INFORMATION</div>*@
+            <div class="col-md-12" style="font-size:xx-large; margin-left: -18px;"><b> GET STARTED</b></div>
+            <div class="col-md-12" style="font-size:larger; margin-left: -18px;"><u><b> COMPANY INFORMATION</b></u></div>
+            <div class="col-sm-12" style="padding-bottom:2%;"></div>
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @id = "frmOnlineRegDetail" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.AccessType)
+                @Html.ValidationSummary(true)
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-2 onlinelabels" for="textinput">Name as on Trade License&nbsp;<span style="color:red;width:50px;">*</span></label>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", maxlength = "200", autocomplete = "off", style = "margin-bottom: 1%;" })
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 onlinelabels" for="textinput">Type of Customer&nbsp;<span style="color:red;width:50px;">*</span></label>
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.customertypeid, new SelectList(ViewBag.DDLCustomerTypeID, "customertypeid", "name", Model.customertypeid), "--Select--", new { @class = "form-control validate[required]" })
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="">
+                            <label class="col-md-2 onlinelabels" for="textinput">Type of Company&nbsp;<span style="color:red;width:50px;">*</span></label>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.CompanyTypeID, new SelectList(ViewBag.DDLCompanyTypeID, "CompanyTypeID", "CompanyTypeName", Model.CompanyTypeID), "--Select--", new { @class = "form-control validate[required]" })
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="display:none" id="addOtherComp">
+                        <label class="col-md-2 onlinelabels" for="textinput"></label>
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="">
+                            <label class="col-md-2 onlinelabels" for="textinput">Type of Company&nbsp;<span style="color:red;width:50px;"></span></label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.OtherCompanyTypeName, new { @class = "form-control", maxlength = "200", autocomplete = "off" })
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 onlinelabels" for="textinput">License Number&nbsp;<span style="color:red;width:50px;"></span></label>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.TradeLicenceNo, new { @class = "form-control", maxlength = "200", autocomplete = "off" })
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="">
+                            <label class="col-md-2 onlinelabels" for="textinput">Place of Incorporation&nbsp;<span style="color:red;width:50px;">*</span></label>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.IncCountryID, new SelectList(ViewBag.DDLCountryID, "CountryID", "CountryName", Model.IncCountryID), "--Select--", new { @class = "form-control validate[required]" })
+
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 onlinelabels" for="textinput">Date of Incorporation&nbsp;<span style="color:red;width:50px;">*</span></label>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.IncDate, new { @class = "form-control formattedCalenderinc", maxlength = "200", autocomplete = "off", onkeypress = "return isNullincDate(event)" })
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="">
+                            <label class="col-md-2 onlinelabels" for="textinput">License Expiry Date&nbsp;<span style="color:red;width:50px;">*</span></label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.LicenceExpDate, new { @class = "form-control formattedCalender", maxlength = "200", autocomplete = "off", onkeypress = "return isNullLicenceExpDate(event)" })
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 onlinelabels" for="textinput">Annual Turnover&nbsp;<span style="color:red;width:50px;"></span></label>
+                        <div class="col-md-3">
+                            <div class="col-md-5 padoff">
+                                @Html.DropDownListFor(model => model.CurrencyID, new SelectList(ViewBag.DDLCurrencyID, "CurrencyID", "CurrencyCode", Model.CurrencyID), "--Select--", new { @class = "form-control validate[required]" })
+                            </div>
+                            <div class="col-md-7 padoff">
+                                @Html.TextBoxFor(m => m.AnnTurnover, new { @class = "form-control tel", maxlength = "200", autocomplete = "off" })
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="">
+                            <label class="col-md-2 onlinelabels" for="textinput">License Issuing Authority&nbsp;<span style="color:red;width:50px;">*</span></label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.AuthCountry, new { @class = "form-control", maxlength = "200", autocomplete = "off" })
+
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 onlinelabels" for="textinput">Business Activities&nbsp;<span style="color:red;width:50px;"></span></label>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.BusinessActivity, new { @class = "form-control", maxlength = "200", autocomplete = "off" })
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="">
+                            <label class="col-md-2 onlinelabels" for="textinput">Number of Employees&nbsp;<span style="color:red;width:50px;"></span></label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.NoEmp, new { @class = "form-control", maxlength = "200", autocomplete = "off" })
+                            </div>
+                            <div class="col-md-1"></div>
+                            @*<label class="col-md-2 onlinelabels" for="textinput">Copy of Trade License&nbsp;<span style="color:red;width:50px;"></span><a tabindex="0" class="" role="button" data-toggle="popover" data-trigger="focus" data-content="Only allow files like *.jpg,*.png,*.doc,*.pdf"><span class="glyphicon glyphicon-info-sign"></span></a></label>
+                            <div class="col-md-3">
+                                <input type="file" name="TradeLicUpd" id="TradeLicUpd" class="" />
+                            </div>
+                            <div class="col-md-1"></div>*@
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 onlinelabels" for="textinput">Tel Number&nbsp;<span style="color:red;width:50px;">*</span></label>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.TelNo, new { @class = "form-control tel", maxlength = "200", autocomplete = "off", type = "tel" })
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="">
+                            <label class="col-md-2 onlinelabels" for="textinput">Offical Website (if available)&nbsp;<span style="color:red;width:50px;"></span></label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.Website, new { @class = "form-control", maxlength = "200", autocomplete = "off" })
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12" style="padding-bottom:2%;"></div>
+                    <div class="col-md-12" style="font-size:larger; margin-left: -18px;"><u><b> PRIMARY CONTACT INFORMATION</b></u></div>
+                    <div class="col-sm-12" style="padding-bottom:1%;"></div>
+                    <div class="form-group">
+                        <label class="col-md-2 onlinelabels" for="textinput">First Name&nbsp;<span style="color:red;width:50px;">*</span></label>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", maxlength = "200", autocomplete = "off" })
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="">
+                            <label class="col-md-2 onlinelabels" for="textinput">Last Name&nbsp;<span style="color:red;width:50px;">*</span></label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", maxlength = "200", autocomplete = "off" })
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 onlinelabels" for="textinput">Mobile Number&nbsp;<span style="color:red;width:50px;">*</span></label>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control tel", maxlength = "200", autocomplete = "off", type = "tel" })
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="">
+                            <label class="col-md-2 onlinelabels" for="textinput">Designation&nbsp;<span style="color:red;width:50px;">*</span></label>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.DesignationID, new SelectList(ViewBag.DDLDesignationID, "DesignationID", "DesignationName", Model.DesignationID), "--Select--", new { @class = "form-control validate[required]" })
+                             
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="display:none" id="addOtherDesig">
+                        <label class="col-md-2 onlinelabels" for="textinput"></label>
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="">
+                            <label class="col-md-2 onlinelabels" for="textinput">Designation&nbsp;<span style="color:red;width:50px;"></span></label>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.OtherDesignationName, new { @class = "form-control", maxlength = "200", autocomplete = "off" })
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 onlinelabels" for="textinput">E-mail ID&nbsp;<span style="color:red;width:50px;">*</span></label>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.EmailID, new { @class = "form-control", maxlength = "200", autocomplete = "off" })
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="">
+                            <label class="col-md-2 onlinelabels" for="textinput">Confirm E-mail ID&nbsp;<span style="color:red;width:50px;">*</span></label>
+                            <div class="col-md-3">
+                                <input id="ConfirmEmailID" name="ConfirmEmailID" type="text" placeholder="" class="form-control validate[required,custom[email]]" maxlength="100" autocomplete="off" value="@Model.EmailID"><span id="result" />
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 padoff" style="text-align:right;">
+                        @*<button type="submit" id="btnSend" name="btnSend" value="Submit" class="btn btn-primary" style="width:100px; background-color:#58595b;border-color: #58595b;">Submit</button>*@
+                        <button type="submit" id="submit" name="btnSend" value="Submit" class="onlinrBtn" style="margin-right: 8.5%;">Next</button>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+    <div class="container">
+        <div class="modal fade" id="myModalView" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content scroll" style="height:350px;width:850px">
+                    <div class="modal-header">
+                        <button id="DivClose" type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Transaction History</h4>
+                    </div>
+                    <div id="NEW1" class="modal-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .intl-tel-input input, .intl-tel-input input[type="text"], .intl-tel-input input[type="tel"] {
+        padding-left: 12px;
+    }
+
+    .intl-tel-input {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+        .intl-tel-input .flag-dropdown:hover .selected-flag {
+            background-color: transparent;
+        }
+
+        .intl-tel-input .selected-flag .arrow {
+            border-left: none;
+            border-right: none;
+        }
+
+        .intl-tel-input .flag-dropdown {
+            width: 100%;
+        }
+
+        .intl-tel-input .selected-flag {
+            width: 100%;
+        }
+
+    element {
+    }
+
+    .intl-tel-input .country-list {
+        width: 262px;
+    }
+
+    .form-control {
+        border-radius: 0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        font-size: 12px;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+        border: 1px solid #d3d3d3;
+        font-weight: normal;
+        color: #58595b;
+    }
+
+    .popover {
+        width: 200px;
+        height: 75px;
+    }
+</style>
+@Scripts.Render("~/bundles/jquery")
+<script>
+
+
+    function isNullLicenceExpDate(evt) {
+        document.getElementById("LicenceExpDate").value = "";
+        document.getElementById("LicenceExpDate").focus();
+        return false;
+    }
+    function isNullincDate(evt) {
+        document.getElementById("IncDate").value = "";
+        document.getElementById("IncDate").focus();
+        return false;
+    }
+
+    $("#submit").click(function () {
+
+        if ($("#spanRed").length > 0) {
+            return false;
+        }
+        var Email = $("#EmailID").val();
+        var ConfirmEmailID = $("#ConfirmEmailID").val();
+        //if (!isEmailGood(Email)) {
+        //    alert("Must be Business email")
+        //    return false;
+        //}
+        if (Email != ConfirmEmailID) {
+            alert("Email dosen't match !!");
+            return false;
+        }
+
+    });
+
+    var invalidDomains = ["@@gmail.", "@@zoho.", "@@yandex.", "@@outlook.", "@@aim.", "@@icloud.", "@@yahoo.", "@@mail.", "@@myway.", "@@hotmail.", "@@hushmail.", "@@gmx.", "@@aol.", "@@lycos.", "@@inbox.", "@@easy.", "@@mail2web.", "@@india."];
+    function isEmailGood(email) {
+        for (var i = 0; i < invalidDomains.length; i++) {
+            var domain = invalidDomains[i];
+            if (email.indexOf(domain) != -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+    $('#ConfirmEmailID').blur(function () {
+
+        var Email = $("#EmailID").val();
+        var ConfirmEmailID = $("#ConfirmEmailID").val();
+
+        //if (!isEmailGood(Email)) {
+        //    alert("Must be Business email")
+        //    return false;
+        //}
+        if (ConfirmEmailID != "")
+            if (Email == ConfirmEmailID) {
+                $("#result").html("<span id='spanGreen' style='color:green'><i class='fa fa-check 3x'></i></span>");
+                $("#ConfirmEmailID").css('color', 'green');
+                return true;
+            }
+            else {
+                $("#result").html("<span id='spanRed' style='color:red'><i class='fa fa-times 3x'></i>Given e-mail ID's do not match.</span>");
+                $("#ConfirmEmailID").css('color', 'red');
+                return false;
+            }
+
+
+    })
+
+    $(document).ready(function () {
+        $('#TradeLicUpd').on('change', function () {
+            myfile = $(this).val();
+            var ext = myfile.split('.').pop();
+            if (ext == "jpeg" || ext == "jpg" || ext == "pdf" || ext == "png" || ext == "docx" || ext == "doc") {
+
+            }
+            else {
+                alert("Only allow files like *.jpg,*.png,*.doc,*.pdf");
+                $("#TradeLicUpd").val('');
+            }
+        });
+        $("#MobileNo").intlTelInput();
+        var DesignationName = $("#DesignationName").val();
+        getData(DesignationName);
+        var CompanyTypeName = $("#CompanyTypeName").val();
+        getCompData(CompanyTypeName);
+    });
+    function getData(evt) {
+        var designation = $("#DesignationName option:selected").text();
+        if (designation == "Other") {
+            $("#addOtherDesig").attr("style", "display:block");
+        }
+        else {
+            $("#addOtherDesig").attr("style", "display:none");
+        }
+    }
+    function getCompData(evt) {
+        var compytype = $("#CompanyTypeName option:selected").text();
+        if (compytype == "Other") {
+            $("#addOtherComp").attr("style", "display:block");
+        }
+        else {
+            $("#addOtherComp").attr("style", "display:none");
+        }
+    }
+
+
+</script>

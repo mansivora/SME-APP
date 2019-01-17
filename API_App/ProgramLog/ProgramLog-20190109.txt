@@ -1,0 +1,8 @@
+<Start Issue>1/9/2019 9:27:36 AM	The remote server returned an error: (403) Forbidden.
+ <End Issue>
+<Start Issue>1/9/2019 5:49:06 PM	The remote server returned an error: (400) Bad Request.
+ <End Issue>
+<Start Issue>1/9/2019 5:50:38 PM	The remote server returned an error: (400) Bad Request.
+ <End Issue>
+<Start Issue>1/9/2019 5:51:37 PM	The remote server returned an error: (400) Bad Request.
+ <End Issue>
